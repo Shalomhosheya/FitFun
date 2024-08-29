@@ -565,27 +565,59 @@ nav {
   font-size: 0.8rem;
   color: var(--white);
 }
-.cal{
-  width: 1200px;
+.cal {
+  width: 90%; /* Use a percentage for width to make it responsive */
+  max-width: 1200px; /* Set a maximum width to prevent it from being too large on wide screens */
   background-color: #54f9c5;
   position: absolute;
+  display: flex;
+  flex-direction: column; /* Stack items vertically on small screens */
   top: 0;
-  height: 800px;
-  right:  10%;
+  height: auto; /* Adjust height to auto to let content dictate it */
+  right: 5%; /* Adjust right to 5% for more padding on smaller screens */
+  margin: 0 auto; /* Center the section */
+  padding: 20px; /* Add padding for better spacing */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
 }
-.closeBtn{
+
+.closeBtn {
   position: absolute;
-  right: 0;
-  top: 0;
-  font-size: 1rem;
-  width: 80px;
+  right: 10px; /* Use pixels for better control on smaller screens */
+  top: 10px; /* Use pixels for better control on smaller screens */
+  font-size: 0.4px;
+  width: auto; /* Allow the button width to adjust */
+  padding: 10px; /* Add padding for better spacing */
   color: black;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 }
 #calsection{
-  display: block;
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .cal {
+    flex-direction: row; /* Change to row on larger screens */
+    height: 800px; /* Restore height on larger screens */
+    width: 80%; /* Adjust width for larger screens */
+  }
+
+  .closeBtn {
+    font-size: 1.2rem; /* Slightly increase button size */
+    width: 100px; /* Fixed width for larger screens */
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cal {
+    right: 2%; /* Reduce right margin on smaller screens */
+    padding: 10px; /* Reduce padding for smaller screens */
+  }
+
+  .closeBtn {
+    font-size: 0.9rem; /* Decrease button size for smaller screens */
+    width: auto; /* Keep width flexible */
+  }
 }
 @media (width < 900px) {
   .nav__links {
