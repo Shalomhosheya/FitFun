@@ -598,8 +598,8 @@ nav {
 @media screen and (min-width: 768px) {
   .cal {
     flex-direction: row; /* Change to row on larger screens */
-    height: 890px; /* Restore height on larger screens */
-    width: 80%; /* Adjust width for larger screens */
+    height: 1200px; /* Restore height on larger screens */
+    width: 80%; 
   }
 
   .closeBtn {
