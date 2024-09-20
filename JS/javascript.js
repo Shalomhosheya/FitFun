@@ -9,48 +9,41 @@ $("#BtnCal").on('click', function () {
 $(".closeBtn").on('click', function () {
     view.style.display = "none";
 });
-// Gender selection change handler to show/hide the hip length field dynamically
+
 $("#genderSelect").on('change', function () {
     var selectedGender = $("#genderSelect").val();
 
-    // Show hip length only for females
     if (selectedGender === "female") {
-        $('#hipLenght').css("display", "block"); // Show hip input for females
+        $('#hipLenght').css("display", "block"); 
     } else {
-        $('#hipLenght').css("display", "none"); // Hide hip input for males
+        $('#hipLenght').css("display", "none"); 
     }
 });
 
 // On clicking the Calculate button
 $("#CalBtn").on('click', function () {
-    var age = Number($("#exampleFormControlInput2").val()); // Convert age to number
+    var age = Number($("#exampleFormControlInput2").val()); 
     var height = $("#exampleFormControlInput3").val();
     var weight = $("#exampleFormControlInput4").val();
     var waist = $("#exampleFormControlInput6").val();
     var neck = $("#exampleFormControlInput5").val();
-    var hip = $("#exampleFormControlInput7").val(); // For females
+    var hip = $("#exampleFormControlInput7").val(); 
 
     var selectedGender = $("#genderSelect").val();
 
-    // Ensure hip length is hidden for males
     if (selectedGender === "male") {
         $('#hipLenght').css("display", "none");
     }
 
     if (selectedGender === "male" && age >= 18) {
-        // Male adult calculation
         maleCal(height, weight, waist, neck);
     } else if (selectedGender === "male" && age <= 17) {
-        // Boy calculation
         boyCal(height, weight, waist, neck);
     } else if (selectedGender === "female" && age >= 18) {
-        // Female adult calculation
         femaleCal(height, weight, waist, neck, hip);
     } else if (selectedGender === "female" && age <= 17) {
-        // Girl calculation
         girlCal(height, weight, waist, neck, hip);
     } else {
-        // Alert if gender is not selected or inputs are missing
         alert("Please fill all blanks");
     }
 });
@@ -97,7 +90,6 @@ function maleCal(height, weight, waist, neck, unit = 'metric') {
             - 70.041 * Math.log10(height) 
             + 36.76;
     } else {
-        // SI Metric formula for males: height, waist, neck in cm
         const bodyDensity = 1.0324 
             - 0.19077 * Math.log10(waist - neck) 
             + 0.15456 * Math.log10(height);
@@ -105,15 +97,12 @@ function maleCal(height, weight, waist, neck, unit = 'metric') {
         bfp = (495 / bodyDensity) - 450;
     }
 
-    // Display calculated Body Fat Percentage
     $("#percentLabel").text(bfp.toFixed(2) + "%");
     console.log("Male Body Fat Percentage:", bfp);
 
-    // Calculate Fat Mass (FM) and Lean Mass (LM)
     const fatMass = (bfp / 100) * weight;
     const leanMass = weight - fatMass;
 
-    // Display FM and LM
     $("#fatMassLabel").text(fatMass.toFixed(2) + " kg");
     $("#leanMassLabel").text(leanMass.toFixed(2) + " kg");
 
@@ -132,12 +121,10 @@ function femaleCal(height, weight, waist, neck, hip, unit = 'metric') {
     let bfp;
 
     if (unit === 'usc') {
-        // USC formula for females: height in inches, waist, neck, hip in inches
         bfp = 163.205 * Math.log10(waist + hip - neck) 
             - 97.684 * Math.log10(height) 
             - 78.387;
     } else {
-        // SI Metric formula for females: height, waist, neck, hip in cm
         const bodyDensity = 1.29579 
             - 0.35004 * Math.log10(waist + hip - neck) 
             + 0.22100 * Math.log10(height);
@@ -145,15 +132,12 @@ function femaleCal(height, weight, waist, neck, hip, unit = 'metric') {
         bfp = (495 / bodyDensity) - 450;
     }
 
-    // Display calculated Body Fat Percentage
     $("#percentLabel").text(bfp.toFixed(2) + "%");
     console.log("Female Body Fat Percentage:", bfp);
 
-    // Calculate Fat Mass (FM) and Lean Mass (LM)
     const fatMass = (bfp / 100) * weight;
     const leanMass = weight - fatMass;
 
-    // Display FM and LM
     $("#fatMassLabel").text(fatMass.toFixed(2) + " kg");
     $("#leanMassLabel").text(leanMass.toFixed(2) + " kg");
 
@@ -161,7 +145,6 @@ function femaleCal(height, weight, waist, neck, hip, unit = 'metric') {
     console.log("Lean Mass (LM):", leanMass);
 }
 
-// Body fat percentage for boys
 function boyCal(height, weight, age, unit = 'metric') {
     height = Number(height);
     weight = Number(weight);

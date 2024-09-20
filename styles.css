@@ -566,9 +566,9 @@ nav {
   color: var(--white);
 }
 .cal {
-  width: 90%; /* Use a percentage for width to make it responsive */
-  max-width: 1200px; /* Set a maximum width to prevent it from being too large on wide screens */
-  background-color: #54f9c5;
+  width: 150%; /* Use a percentage for width to make it responsive */
+  max-width: 100%; /* Set a maximum width to prevent it from being too large on wide screens */
+  background-color: rgba(236, 243, 239, 0.8);
   position: absolute;
   display: flex;
   flex-direction: column; /* Stack items vertically on small screens */
@@ -598,7 +598,7 @@ nav {
 @media screen and (min-width: 768px) {
   .cal {
     flex-direction: row; /* Change to row on larger screens */
-    height: 1200px; /* Restore height on larger screens */
+    height: 1200px; 
     width: 80%; 
   }
 
